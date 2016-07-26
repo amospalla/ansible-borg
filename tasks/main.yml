@@ -1,0 +1,18 @@
+---
+- name: Copy binary to /usr/local/bin
+  copy:
+    src: 'borg.{{ ansible_userspace_architecture }}'
+    dest: /usr/local/bin/borg
+    owner: root
+    group: root
+    mode: 0755
+  when: ansible_userspace_architecture in borg_allowed_architectures
+  tags:
+    - borg
+
+- name: Check borg binary executes
+  command: /usr/local/bin/borg -V
+  changed_when: False
+  when: ansible_userspace_architecture in borg_allowed_architectures
+  tags:
+    - borg

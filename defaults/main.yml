@@ -1,0 +1,4 @@
+---
+borg_allowed_architectures:
+  - i386
+  - x86_64
