@@ -6,13 +6,17 @@
     owner: root
     group: root
     mode: 0755
-  when: ansible_userspace_architecture in borg_allowed_architectures
+  when: ansible_userspace_architecture|default('unknown') in borg_allowed_architectures and
+        borg_distributions['ansible_distribution'] is defined and
+        ansible_distribution_major_version in borg_distributions['ansible_distribution']
   tags:
     - borg
 
 - name: Check borg binary executes
   command: /usr/local/bin/borg -V
   changed_when: False
-  when: ansible_userspace_architecture in borg_allowed_architectures
+  when: ansible_userspace_architecture|default('unknown') in borg_allowed_architectures and
+        borg_distributions['ansible_distribution'] is defined and
+        ansible_distribution_major_version in borg_distributions['ansible_distribution']
   tags:
     - borg
