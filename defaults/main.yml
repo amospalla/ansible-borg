@@ -4,5 +4,5 @@ borg_allowed_architectures:
   - x86_64
 borg_distributions:
   Debian: [7, 8]
-  Ubuntu: [12,14,16]
+  Ubuntu: [12, 14, 16]
   CentOS: [6,7]
